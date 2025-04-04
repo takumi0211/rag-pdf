@@ -1,0 +1,209 @@
+/* --- START OF FILE style.css --- */
+
+/* (既存のスタイルは省略 - そのまま残す) */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 700px;
+    margin-top: 30px;
+}
+
+h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8em;
+}
+
+/* (Flash Messages, Form, File Input, Loading Indicator スタイルは省略) */
+ .flash-messages { list-style: none; padding: 0; margin-bottom: 20px; }
+ .flash-messages li { padding: 10px 15px; margin-bottom: 10px; border-radius: 4px; font-size: 0.95em; }
+ .flash-messages .info { background-color: #e7f3fe; border-left: 5px solid #2196F3; color: #1d60a0; }
+ .flash-messages .success { background-color: #e8f5e9; border-left: 5px solid #4CAF50; color: #2e7d32; }
+ .flash-messages .warning { background-color: #fff3e0; border-left: 5px solid #ff9800; color: #e65100; }
+ .flash-messages .error { background-color: #ffebee; border-left: 5px solid #f44336; color: #c62828; }
+
+ form { margin-bottom: 30px; }
+ .file-input-wrapper { margin-bottom: 15px; padding: 15px; background-color: #f8f9fa; border: 1px dashed #ced4da; border-radius: 5px; text-align: center; }
+ .file-input-wrapper label { font-weight: 500; color: #495057; display: block; margin-bottom: 10px; font-size: 0.95em; }
+ .file-input-wrapper input[type="file"] { display: block; width: 100%; margin: 0 auto 8px auto; color: #495057; }
+ .file-input-wrapper small { font-size: 0.85em; color: #6c757d; }
+ .file-input-wrapper input[type="file"]::file-selector-button { padding: 6px 12px; border: 1px solid #ced4da; border-radius: 4px; background-color: #e9ecef; color: #495057; cursor: pointer; transition: background-color 0.2s ease-in-out; margin-right: 10px; }
+ .file-input-wrapper input[type="file"]::file-selector-button:hover { background-color: #dee2e6; }
+
+ form input[type="text"] { flex-grow: 1; padding: 12px 15px; border: 1px solid #d4d8dc; border-radius: 5px; font-size: 1em; transition: border-color 0.3s ease; }
+ form input[type="text"]:focus { outline: none; border-color: #4a90e2; box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2); }
+ form button { padding: 12px 20px; background-color: #4a90e2; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1em; font-weight: 500; transition: background-color 0.3s ease, box-shadow 0.3s ease; white-space: nowrap; }
+ form button:hover { background-color: #3a7bc8; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); }
+ form button:disabled { background-color: #cccccc; cursor: not-allowed; }
+ #loading { display: none; text-align: center; margin: 20px 0; color: #555; font-style: italic; }
+
+/* Results Area (既存のスタイルは省略) */
+.results-area { margin-top: 30px; border-top: 1px solid #e0e4e8; padding-top: 25px; }
+.results-area h2, .results-area h3 { color: #34495e; margin-bottom: 15px; border-bottom: 2px solid #e0e4e8; padding-bottom: 8px; }
+.results-area h2 { font-size: 1.4em; }
+.results-area h3 { font-size: 1.2em; margin-top: 25px; }
+.results-area h3:first-of-type { margin-top: 0; }
+.results-area p i { color: #555; display: block; margin-bottom: 20px; background-color: #f9f9f9; padding: 10px; border-radius: 4px; border-left: 3px solid #ccc; }
+
+/* --- response-text 内の Markdown 要素に対するスタイル --- */
+.response-text {
+    background-color: #e9f3fd; /* 背景色を維持 */
+    padding: 15px 20px; /* 少しパディング調整 */
+    border-radius: 5px;
+    border-left: 4px solid #4a90e2; /* ボーダーを維持 */
+    margin-bottom: 20px;
+    white-space: normal; /* pre-wrapからnormalへ変更。Markdownが適切に改行するため */
+    word-wrap: break-word;
+    line-height: 1.7; /* 行間を少し広げる */
+}
+
+/* 見出し */
+.response-text h1,
+.response-text h2,
+.response-text h3,
+.response-text h4,
+.response-text h5,
+.response-text h6 {
+    margin-top: 1.2em;
+    margin-bottom: 0.6em;
+    color: #2c3e50; /* 見出しの色 */
+    line-height: 1.3;
+}
+.response-text h1 { font-size: 1.6em; }
+.response-text h2 { font-size: 1.4em; }
+.response-text h3 { font-size: 1.2em; }
+/* 他のhタグも必要に応じて */
+
+/* 段落 */
+.response-text p {
+    margin-bottom: 1em;
+}
+ /* response-text直下の最初の要素のmargin-topを消す */
+.response-text > *:first-child {
+     margin-top: 0;
+}
+ /* response-text直下の最後の要素のmargin-bottomを消す */
+.response-text > *:last-child {
+     margin-bottom: 0;
+}
+
+
+/* リスト */
+.response-text ul,
+.response-text ol {
+    margin-bottom: 1em;
+    padding-left: 1.8em; /* インデント */
+}
+.response-text li {
+    margin-bottom: 0.4em;
+}
+
+/* コードブロック (fenced_code extension 用) */
+.response-text pre {
+    background-color: #f0f0f0; /* コードブロックの背景色 */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 1em;
+    overflow-x: auto; /* 横スクロール */
+    margin-bottom: 1em;
+    line-height: 1.45;
+    font-family: 'Courier New', Courier, monospace; /* 等幅フォント */
+    font-size: 0.95em;
+}
+.response-text pre code {
+    background-color: transparent; /* preに背景色があるのでcodeは透明に */
+    padding: 0;
+    border: none;
+    font-size: inherit; /* preのフォントサイズを継承 */
+}
+
+/* インラインコード */
+.response-text code {
+    background-color: #f0f0f0; /* インラインコードの背景色 */
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9em; /* 少し小さめ */
+}
+ /* pre内のcodeには適用しない */
+.response-text pre > code {
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    font-size: inherit;
+ }
+
+
+/* 引用 */
+.response-text blockquote {
+    border-left: 4px solid #ccc;
+    margin: 1em 0;
+    padding: 0.5em 1em;
+    color: #666;
+    background-color: #f9f9f9;
+}
+.response-text blockquote p {
+     margin-bottom: 0.5em; /* 引用内の段落マージン調整 */
+}
+
+ /* テーブル (tables extension 用) */
+ .response-text table {
+     border-collapse: collapse;
+     margin-bottom: 1em;
+     width: 100%; /* 幅を100%にするかはお好みで */
+     border: 1px solid #ddd;
+ }
+ .response-text th,
+ .response-text td {
+     border: 1px solid #ddd;
+     padding: 8px 12px;
+     text-align: left;
+ }
+ .response-text th {
+     background-color: #f2f2f2;
+     font-weight: bold;
+ }
+
+/* 水平線 */
+.response-text hr {
+    border: 0;
+    border-top: 1px solid #eee;
+    margin: 1.5em 0;
+}
+
+/* リンク */
+.response-text a {
+     color: #007bff;
+     text-decoration: none;
+}
+.response-text a:hover {
+     text-decoration: underline;
+}
+
+
+/* (Sources List スタイルは省略) */
+.sources-list { list-style: none; padding-left: 0; }
+.sources-list li { background-color: #f8f9fa; border: 1px solid #e8eaed; padding: 10px 15px; margin-bottom: 8px; border-radius: 4px; font-size: 0.95em; color: #5f6368; word-break: break-all; }
+.sources-list li::before { content: "📄"; margin-right: 8px; font-size: 1.1em; }
+
+/* --- END OF response-text Markdown styles --- */
+
+
+/* --- END OF FILE style.css --- */

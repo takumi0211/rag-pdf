@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG QA アプリ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- style.css の内容も後で調整 -->
+</head>
+<body>
+    <div class="container">
+        <h1>質問してみよう（RAG + Gemma3）</h1>
+
+        <!-- Flash Messages Area -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flash-messages">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <!-- Form (変更なし) -->
+        <form method="post" id="qa-form" enctype="multipart/form-data">
+            <div class="file-input-wrapper">
+                 <label for="pdf_file">オプション: PDFをアップロードしてデータベースに追加</label>
+                 <input type="file" name="pdf_file" id="pdf_file" accept=".pdf">
+                 <small>(既存のデータに追加されます)</small>
+            </div>
+            <div style="display: flex; gap: 10px; width: 100%;">
+                <input type="text" name="question" placeholder="アップロードしたPDFや既存のデータについて質問..." style="flex-grow: 1;">
+                <button type="submit" id="submit-button">送信</button>
+            </div>
+        </form>
+
+        <!-- Loading Indicator Placeholder (変更なし) -->
+        <div id="loading">考え中... しばらくお待ちください。</div>
+
+        <!-- Results Area -->
+        <div class="results-area">
+             {% if question_asked %}
+                 <h3>質問:</h3>
+                 <p><i>{{ question_asked }}</i></p>
+             {% endif %}
+
+            {% if response_html %} {# response の代わりに response_html をチェック #}
+            <h2>回答:</h2>
+            {# safeフィルターを使ってHTMLとしてレンダリング #}
+            {# pタグではなくdivタグで囲む方が適切 #}
+            <div class="response-text">
+                {{ response_html | safe }}
+            </div>
+            {% endif %}
+
+            {% if sources %}
+            <h3>参照元:</h3>
+            <ul class="sources-list">
+                {% for src in sources %}
+                <li>{{ src }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

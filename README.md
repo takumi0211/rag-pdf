@@ -1,24 +1,26 @@
-# RAG PDF QA アプリ
+# RAG QA アプリ
 
 ## 概要
-このプロジェクトは、RAG (Retrieval-Augmented Generation) と Gemma3 を活用した質問応答 (QA) アプリケーションです。ユーザーはPDFファイルをアップロードしてデータベースに追加するか、既存のデータに対して質問を行い、適切な回答を得ることができます。バックエンドでは Flask と LangChain、ChromaDB などを利用し、フロントエンドは HTML、CSS、JavaScript によるシンプルで直感的なインターフェースを提供しています.
+このプロジェクトは、RAG (Retrieval-Augmented Generation) と Gemma3 を活用した質問応答 (QA) アプリケーションです。ユーザーはPDFファイルをアップロードしてデータベースに追加するか、既存のデータに対して質問を行い、適切な回答を得ることができます。バックエンドでは Flask や LangChain、ChromaDB などを利用し、フロントエンドは HTML、CSS、JavaScript によるシンプルで直感的なインターフェースを提供しています。
 
 ## 特徴
-- **PDFアップロード機能**: ユーザーがPDFファイルをアップロードし、ドキュメントから情報を抽出・追加可能。
+- **PDFアップロード機能**: ユーザーがPDFファイルをアップロードし、ドキュメントから情報を抽出・データベースに追加可能。
 - **質問応答システム**: アップロードされたPDFや既存データを元に、ユーザーの質問に対して自動で回答を生成。
 - **RAGアプローチ**: 検索（Retrieval）と生成（Generation）の両面から、より精度の高い回答を実現。
+- **Ollama連携**: 言語モデルとしてGemma3を利用するため、ollamaを用いてモデルのpullおよび実行を行います。
 - **シンプルなWeb UI**: ユーザーフレンドリーなフォームと動的なフィードバックを提供。
 
 ## 必要な環境
 - Python 3.9 以上
 - pip
+- [Ollama](https://ollama.com/) (Gemma3モデル利用のため)
 
 ## インストール手順
 
 1. **リポジトリのクローン**
    ```bash
    git clone https://github.com/takumi0211/rag-pdf.git
-   cd <リポジトリのディレクトリ>
+   cd rag-pdf
    ```
 
 2. **仮想環境の作成（オプション）**
@@ -32,6 +34,22 @@
    ```bash
    pip install -r requirements.txt
    ```
+
+## Ollama のセットアップ
+本アプリケーションは、言語モデルとしてGemma3を使用するためにollamaを利用しています。以下の手順でGemma3モデルをpullし、ollamaの環境を整えてください。
+
+1. **Ollama のインストール**  
+   Ollamaは公式サイトからダウンロードしてください: [Ollama公式サイト](https://ollama.com/)
+
+2. **Gemma3 モデルの取得**  
+   ターミナルで以下のコマンドを実行して、Gemma3モデルをローカルにpullします。
+   ```bash
+   ollama pull gemma3
+   ```
+
+3. **Ollama サービスの起動**  
+   Ollama を起動し、Gemma3 モデルが正常に動作していることを確認してください。  
+   ※環境やバージョンによっては手順が異なる場合があるため、詳細は公式ドキュメントを参照してください。
 
 ## 使い方
 
@@ -62,8 +80,6 @@ python app.py
 
 - **requirements.txt**  
   プロジェクトで必要なPythonパッケージの一覧です。  
-  (例: flask, langchain, chromadb など)  
-  citeturn0file0
 
 - **get_embedding_function.py**  
   埋め込み（embedding）関数の取得および言語モデルとの連携を行うためのスクリプトです。
@@ -76,13 +92,21 @@ python app.py
 
 - **static/**  
   - **index.html**: アプリケーションのメインHTMLテンプレート。  
-    citeturn0file3
   - **script.js**: ユーザーインターフェースの動作（フォーム送信時のローディング表示など）を制御するJavaScriptファイル。  
-    citeturn0file1
   - **style.css**: UIのスタイリングを定義したCSSファイル。  
-    citeturn0file2
 
+## テスト
+ユニットテストには pytest を利用可能です。テストファイルが用意されている場合は、以下のコマンドでテストを実行してください。
+```bash
+pytest
+```
 
 ## 注意事項
 - アップロードするPDFの内容に依存して回答が生成されるため、正確な回答を得るためには適切なPDFファイルを用意してください。
 - RAGおよびGemma3の設定や環境によっては、パフォーマンスや回答の精度が変動する可能性があります。
+- **Ollama のpull**  
+  Gemma3モデルを利用するために、事前にollamaでモデルのpullが必要です。まだ実施していない場合は、必ず上記の「Ollama のセットアップ」をご確認ください。
+
+---
+
+このREADMEはプロジェクトのセットアップ、使用方法、各ファイルの役割、そしてollamaによるGemma3モデルの利用方法について概要を示しています。各ソースコード内のコメントも参考にしてください。

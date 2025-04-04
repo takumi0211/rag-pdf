@@ -10,14 +10,14 @@
 - **シンプルなWeb UI**: ユーザーフレンドリーなフォームと動的なフィードバックを提供。
 
 ## 必要な環境
-- Python 3.x
+- Python 3.9 以上
 - pip
 
 ## インストール手順
 
 1. **リポジトリのクローン**
    ```bash
-   git clone <リポジトリのURL>
+   git clone https://github.com/takumi0211/rag-pdf.git
    cd <リポジトリのディレクトリ>
    ```
 
